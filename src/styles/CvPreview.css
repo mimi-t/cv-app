@@ -1,10 +1,11 @@
 #cv-preview {
-  text-align: left;
   padding: 2rem;
+  text-align: left;
+  white-space: pre-line;
 }
 
 .title-duration {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

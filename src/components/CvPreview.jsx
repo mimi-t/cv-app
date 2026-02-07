@@ -1,6 +1,5 @@
 import '../styles/CvPreview.css'
-export function CvPreview({name, email, phone, website}) {
-    console.log('IN PREVIEW >>> ' + name+email+phone)
+export function CvPreview({name, email, phone, website, title, currentlyWorking, startMonth, startYear, endMonth, endYear, company, description}) {
     return (
         <div id="cv-preview">
             <div id="header-container">
@@ -11,11 +10,11 @@ export function CvPreview({name, email, phone, website}) {
                 <h2>Experience</h2>
                 <div className="experience">
                     <div className="title-duration">
-                        <strong>Job title</strong>
-                        <p>March 2019 - Present</p>
+                        <strong>{title}</strong>
+                        <span>{startMonth} {startYear} - {currentlyWorking ? 'Present' : `${endMonth} ${endYear}`}</span>
                     </div>
-                    <p>Company</p>
-                    <p>Description</p>
+                    <p>{company}</p>
+                    <p>{description}</p>
                 </div>
             </div>
             <div id="education-container">
