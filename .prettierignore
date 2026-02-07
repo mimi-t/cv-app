@@ -1,0 +1,10 @@
+# Ignore artifacts:
+build
+coverage
+
+# Configs:
+.prettierrc
+eslint.config.json
+package.json
+package-lock.json
+vite.config.js
