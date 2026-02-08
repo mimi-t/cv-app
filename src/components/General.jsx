@@ -1,8 +1,13 @@
 export function General({ onSave }) {
+  function getFormData(e) {
+    e.preventDefault();
+    let formData = new FormData(e.target);
+    return Object.fromEntries(formData);
+  }
   return (
     <section id="general">
       <h2>General</h2>
-      <form id="general-form" onSubmit={onSave}>
+      <form id="general-form" onSubmit={(e) => onSave(getFormData(e))}>
         <div className="form-field">
           <label htmlFor="general-name">Name*</label>
           <input type="text" name="name" id="general-name" required />

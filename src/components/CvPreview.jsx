@@ -18,7 +18,7 @@ export function CvPreview({
       <div id="header-container">
         <h1>{name}</h1>
         <p>
-          {email} • {phone} {website !== "" ? `• ${website}` : ""}
+          {email} • {phone} {website && `• ${website}`}
         </p>
       </div>
       <div id="experience-container">

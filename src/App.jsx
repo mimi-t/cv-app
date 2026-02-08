@@ -8,13 +8,11 @@ function App() {
   const [cv, setCv] = useState({});
   console.log(cv);
 
-  const updateCv = (e) => {
-    e.preventDefault();
-    let formData = new FormData(e.target);
-    formData = Object.fromEntries(formData);
+  const updateCv = (cvData) => {
     const oldCv = structuredClone(cv);
-    setCv(Object.assign(oldCv, formData));
+    setCv(Object.assign(oldCv, cvData));
   };
+
   return (
     <>
       <div>
