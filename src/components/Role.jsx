@@ -11,6 +11,7 @@ export function Role({
   endYear,
   description,
   onSave,
+  onDelete,
 }) {
   const [isCurrent, setIsCurrent] = useState(currentlyWorking);
   return (
@@ -120,6 +121,11 @@ export function Role({
           defaultValue={description}
         ></textarea>
       </div>
+      {onDelete && (
+        <button type="button" onClick={() => onDelete(id)}>
+          Delete
+        </button>
+      )}
       <button type="submit">Save role</button>
     </form>
   );

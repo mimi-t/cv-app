@@ -32,6 +32,15 @@ export function Experience({ onSave }) {
       setOpenedRoleId("");
     }
   }
+
+  function deleteRole(id) {
+    const roleIndex = roles.findIndex((role) => role.id === id);
+    let newRoles = [...roles];
+    newRoles.splice(roleIndex, 1);
+    setRoles(newRoles);
+    setOpenedRoleId("");
+  }
+
   return (
     <section id="experience">
       <h2>Experience</h2>
@@ -44,15 +53,20 @@ export function Experience({ onSave }) {
             {role.title}
           </div>
           {openedRoleId === role.id && (
-            <Role {...role} key={role.id + "form"} onSave={saveRole} />
+            <Role
+              {...role}
+              key={role.id + "form"}
+              onSave={saveRole}
+              onDelete={deleteRole}
+            />
           )}
         </Fragment>
       ))}
       {isActive && <Role onSave={saveRole} />}
       <button onClick={toggleAddRoleForm}>Add role</button>
-      <button type="submit" onClick={onSave}>
+      {/* <button type="submit" onClick={onSave}>
         Save
-      </button>
+      </button> */}
     </section>
   );
 }
