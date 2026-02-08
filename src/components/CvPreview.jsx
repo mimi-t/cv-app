@@ -1,18 +1,5 @@
 import "../styles/CvPreview.css";
-export function CvPreview({
-  name,
-  email,
-  phone,
-  website,
-  title,
-  currentlyWorking,
-  startMonth,
-  startYear,
-  endMonth,
-  endYear,
-  company,
-  description,
-}) {
+export function CvPreview({ name, email, phone, website, experience }) {
   return (
     <div id="cv-preview">
       <div id="header-container">
@@ -23,17 +10,23 @@ export function CvPreview({
       </div>
       <div id="experience-container">
         <h2>Experience</h2>
-        <div className="experience">
-          <div className="title-duration">
-            <strong>{title}</strong>
-            <span>
-              {startMonth} {startYear} -{" "}
-              {currentlyWorking ? "Present" : `${endMonth} ${endYear}`}
-            </span>
-          </div>
-          <p>{company}</p>
-          <p>{description}</p>
-        </div>
+        {experience.map((role) => {
+          return (
+            <div className="experience" key={role.id}>
+              <div className="title-duration">
+                <strong>{role.title}</strong>
+                <span>
+                  {role.startMonth} {role.startYear} -{" "}
+                  {role.currentlyWorking
+                    ? "Present"
+                    : `${role.endMonth} ${role.endYear}`}
+                </span>
+              </div>
+              <p>{role.company}</p>
+              <p>{role.description}</p>
+            </div>
+          );
+        })}
       </div>
       <div id="education-container">
         <h2>Education</h2>

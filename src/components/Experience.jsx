@@ -19,18 +19,20 @@ export function Experience({ onSave }) {
     const formData = new FormData(e.target);
     let savedRole = Object.fromEntries(formData);
     const roleIndex = roles.findIndex((role) => role.id === savedRole.id);
+    let newRoles = [...roles];
     if (roleIndex === -1) {
       // add new role
       savedRole.id = crypto.randomUUID();
-      setRoles([...roles, savedRole]);
+      newRoles.push(savedRole);
+      setRoles(newRoles);
       toggleAddRoleForm();
     } else {
       // update existing role
-      let newRoles = [...roles];
       newRoles[roleIndex] = savedRole;
       setRoles(newRoles);
       setOpenedRoleId("");
     }
+    onSave({ experience: newRoles });
   }
 
   function deleteRole(id) {
@@ -64,9 +66,6 @@ export function Experience({ onSave }) {
       ))}
       {isActive && <Role onSave={saveRole} />}
       <button onClick={toggleAddRoleForm}>Add role</button>
-      {/* <button type="submit" onClick={onSave}>
-        Save
-      </button> */}
     </section>
   );
 }

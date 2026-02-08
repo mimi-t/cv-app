@@ -42,6 +42,7 @@ export function Role({
           type="checkbox"
           name="currentlyWorking"
           id="current"
+          value={true}
           checked={isCurrent}
           onChange={() => setIsCurrent(!isCurrent)}
         />
