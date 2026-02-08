@@ -8,11 +8,15 @@ import { Education } from "./components/Education";
 
 function App() {
   const [cv, setCv] = useState({});
-  console.log(cv);
 
-  const updateCv = (cvData) => {
-    const oldCv = structuredClone(cv);
-    setCv(Object.assign(oldCv, cvData));
+  const updateCv = (cvData, field) => {
+    const cvCopy = structuredClone(cv);
+    if (field) {
+      cvCopy[field] = cvData;
+      setCv(cvCopy);
+    } else {
+      setCv(Object.assign(cvCopy, cvData));
+    }
   };
 
   return (

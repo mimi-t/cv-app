@@ -36,9 +36,7 @@ export function Qualification({ FormComponent, type, onSave }) {
       setQualifications(newQualifications);
       setOpenedQualificationId("");
     }
-    let updatedQualification = {};
-    updatedQualification[type] = newQualifications;
-    onSave(updatedQualification);
+    onSave(newQualifications, type);
   }
 
   function deleteQualification(id) {
@@ -49,6 +47,7 @@ export function Qualification({ FormComponent, type, onSave }) {
     newQualifications.splice(qualificationIndex, 1);
     setQualifications(newQualifications);
     setOpenedQualificationId("");
+    onSave(newQualifications, type);
   }
 
   return (
@@ -60,6 +59,7 @@ export function Qualification({ FormComponent, type, onSave }) {
             key={qualification.id + "list"}
             onClick={() => toggleCurrentForm(qualification.id)}
           >
+            {qualification.school}
             {qualification.title}
           </div>
           {openedQualificationId === qualification.id && (
@@ -73,7 +73,9 @@ export function Qualification({ FormComponent, type, onSave }) {
         </Fragment>
       ))}
       {isActive && <FormComponent onSave={saveQualification} />}
-      <button onClick={toggleAddForm}>Add {type}</button>
+      <button onClick={toggleAddForm}>
+        {isActive ? "Close" : `Add ${type}`}
+      </button>
     </section>
   );
 }

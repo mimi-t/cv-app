@@ -5,7 +5,7 @@ export function Experience({
   id,
   title,
   company,
-  currentlyWorking = "",
+  currentlyWorking = false,
   startMonth,
   startYear,
   endMonth,
@@ -14,7 +14,7 @@ export function Experience({
   onSave,
   onDelete,
 }) {
-  const [isCurrent, setIsCurrent] = useState(currentlyWorking);
+  const [isCurrent, setIsCurrent] = useState(currentlyWorking === "true");
   return (
     <form id="experience-form" onSubmit={onSave}>
       <input type="hidden" name="id" value={id} required />
