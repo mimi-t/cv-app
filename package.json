@@ -30,7 +30,7 @@
     "vite": "^7.2.4"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write --ignore-unknown"
+    "*.jsx": "eslint --cache --fix",
+    "*.{jsx,css,md}": "prettier --write --ignore-unknown"
   }
 }
