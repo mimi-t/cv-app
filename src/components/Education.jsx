@@ -1,11 +1,10 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 
-export function Experience({
+export function Education({
   id,
-  title,
-  company,
-  currentlyWorking = "",
+  school,
+  degree,
+  field,
   startMonth,
   startYear,
   endMonth,
@@ -14,51 +13,32 @@ export function Experience({
   onSave,
   onDelete,
 }) {
-  const [isCurrent, setIsCurrent] = useState(currentlyWorking);
   return (
-    <form id="experience-form" onSubmit={onSave}>
+    <form id="education-form" onSubmit={onSave}>
       <input type="hidden" name="id" value={id} required />
       <div className="form-field">
-        <label htmlFor="title">Title*</label>
+        <label htmlFor="school">School*</label>
         <input
           type="text"
-          name="title"
-          id="title"
-          defaultValue={title}
+          name="school"
+          id="school"
+          defaultValue={school}
           required
         />
       </div>
       <div className="form-field">
-        <label htmlFor="company">Company*</label>
-        <input
-          type="text"
-          name="company"
-          id="company"
-          defaultValue={company}
-          required
-        />
+        <label htmlFor="degree">Degree</label>
+        <input type="text" name="degree" id="degree" defaultValue={degree} />
       </div>
-      <div>
-        <input
-          type="checkbox"
-          name="currentlyWorking"
-          id="current"
-          value={true}
-          checked={isCurrent}
-          onChange={() => setIsCurrent(!isCurrent)}
-        />
-        <label htmlFor="current">I am currently working in this role</label>
+      <div className="form-field">
+        <label htmlFor="field">Field of study</label>
+        <input type="text" name="field" id="field" defaultValue={field} />
       </div>
       <div className="form-field">
         <fieldset>
-          <legend>Start date*</legend>
+          <legend>Start date</legend>
           <label htmlFor="startMonth">Month</label>
-          <select
-            name="startMonth"
-            id="startMonth"
-            defaultValue={startMonth}
-            required
-          >
+          <select name="startMonth" id="startMonth" defaultValue={startMonth}>
             <option value="">Month</option>
             <option value="01">January</option>
             <option value="02">February</option>
@@ -79,20 +59,14 @@ export function Experience({
             name="startYear"
             id="startYear"
             defaultValue={startYear}
-            required
           />
         </fieldset>
       </div>
       <div className="form-field">
-        <fieldset disabled={isCurrent}>
-          <legend>End date*</legend>
+        <fieldset>
+          <legend>End date (or expected)</legend>
           <label htmlFor="endMonth">Month</label>
-          <select
-            name="endMonth"
-            id="endMonth"
-            defaultValue={endMonth}
-            required
-          >
+          <select name="endMonth" id="endMonth" defaultValue={endMonth}>
             <option value="">Month</option>
             <option value="01">January</option>
             <option value="02">February</option>
@@ -113,7 +87,6 @@ export function Experience({
             name="endYear"
             id="endYear"
             defaultValue={endYear}
-            required
           />
         </fieldset>
       </div>
@@ -135,11 +108,11 @@ export function Experience({
   );
 }
 
-Experience.propTypes = {
+Education.propTypes = {
   id: PropTypes.string,
-  title: PropTypes.string,
-  company: PropTypes.string,
-  currentlyWorking: PropTypes.string,
+  school: PropTypes.string,
+  degree: PropTypes.string,
+  field: PropTypes.string,
   startMonth: PropTypes.string,
   startYear: PropTypes.string,
   endMonth: PropTypes.string,

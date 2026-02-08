@@ -2,7 +2,9 @@ import { useState } from "react";
 import "./App.css";
 import { General } from "./components/General";
 import { CvPreview } from "./components/CvPreview";
+import { Qualification } from "./components/Qualification";
 import { Experience } from "./components/Experience";
+import { Education } from "./components/Education";
 
 function App() {
   const [cv, setCv] = useState({});
@@ -18,7 +20,16 @@ function App() {
       <div>
         <h1>CV Builder</h1>
         <General onSave={updateCv} />
-        <Experience onSave={updateCv} />
+        <Qualification
+          FormComponent={Experience}
+          type="experience"
+          onSave={updateCv}
+        />
+        <Qualification
+          FormComponent={Education}
+          type="education"
+          onSave={updateCv}
+        />
       </div>
       <CvPreview {...cv}></CvPreview>
     </>
