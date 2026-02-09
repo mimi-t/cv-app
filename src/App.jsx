@@ -11,12 +11,8 @@ function App() {
 
   const updateCv = (cvData, field) => {
     const cvCopy = structuredClone(cv);
-    if (field) {
-      cvCopy[field] = cvData;
-      setCv(cvCopy);
-    } else {
-      setCv(Object.assign(cvCopy, cvData));
-    }
+    cvCopy[field] = cvData;
+    setCv(cvCopy);
   };
 
   return (

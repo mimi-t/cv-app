@@ -19,7 +19,10 @@ export function General({ onSave }) {
   return (
     <section id="general">
       <h2>General</h2>
-      <form id="general-form" onSubmit={(e) => onSave(getFormData(e))}>
+      <form
+        id="general-form"
+        onSubmit={(e) => onSave(getFormData(e), "general")}
+      >
         <div className="form-field">
           <label htmlFor="general-name">Name*</label>
           <input type="text" name="name" id="general-name" required />
