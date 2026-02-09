@@ -1,4 +1,16 @@
+import PropTypes from "prop-types";
+
 export function General({ onSave }) {
+  function showError(e) {
+    if (e.target.validity.patternMismatch) {
+      e.target.setCustomValidity(
+        `Please input a valid ${e.target.previousSibling.textContent.toLowerCase().replaceAll("*", "")}`,
+      );
+    } else {
+      e.target.setCustomValidity("");
+    }
+  }
+
   function getFormData(e) {
     e.preventDefault();
     let formData = new FormData(e.target);
@@ -18,14 +30,33 @@ export function General({ onSave }) {
         </div>
         <div className="form-field">
           <label htmlFor="general-phone">Phone number*</label>
-          <input type="tel" name="phone" id="general-phone" required />
+          <input
+            type="tel"
+            name="phone"
+            id="general-phone"
+            pattern="(\+\d{1,3}|\(\d{1,2}\))?[\s\d]{7,12}"
+            onInput={showError}
+            onInvalid={showError}
+            required
+          />
         </div>
         <div className="form-field">
           <label htmlFor="general-website">Website</label>
-          <input type="text" name="website" id="general-website" />
+          <input
+            type="text"
+            name="website"
+            id="general-website"
+            pattern="[\w\-]+\.[\w\-]+"
+            onInput={showError}
+            onInvalid={showError}
+          />
         </div>
         <button type="submit">Save</button>
       </form>
     </section>
   );
 }
+
+General.propTypes = {
+  onSave: PropTypes.func,
+};

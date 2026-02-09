@@ -15,6 +15,35 @@ export function Experience({
   onDelete,
 }) {
   const [isCurrent, setIsCurrent] = useState(currentlyWorking === "true");
+
+  function showDateError(e) {
+    const form = new FormData(document.forms["experience-form"]);
+    const dates = {
+      start: {
+        year: parseInt(form.get("startYear")),
+        month: parseInt(form.get("startMonth")),
+      },
+      end: {
+        year: parseInt(form.get("endYear")),
+        month: parseInt(form.get("endMonth")),
+      },
+    };
+
+    if (
+      !isCurrent &&
+      (dates.start.year > dates.end.year ||
+        (dates.start.year === dates.end.year &&
+          dates.start.month > dates.end.month))
+    ) {
+      const message = e.target.name.includes("start")
+        ? "Start date must be earlier than end date"
+        : "End date must be later than start date";
+      e.target.setCustomValidity(message);
+    } else {
+      e.target.setCustomValidity("");
+    }
+  }
+
   return (
     <form id="experience-form" onSubmit={onSave}>
       <input type="hidden" name="id" value={id} required />
@@ -57,9 +86,11 @@ export function Experience({
             name="startMonth"
             id="startMonth"
             defaultValue={startMonth}
+            onInvalid={showDateError}
+            onChange={showDateError}
             required
           >
-            <option value="">Month</option>
+            <option value=""></option>
             <option value="01">January</option>
             <option value="02">February</option>
             <option value="03">March</option>
@@ -79,6 +110,8 @@ export function Experience({
             name="startYear"
             id="startYear"
             defaultValue={startYear}
+            onInvalid={showDateError}
+            onInput={showDateError}
             required
           />
         </fieldset>
@@ -91,9 +124,11 @@ export function Experience({
             name="endMonth"
             id="endMonth"
             defaultValue={endMonth}
+            onInvalid={showDateError}
+            onChange={showDateError}
             required
           >
-            <option value="">Month</option>
+            <option value=""></option>
             <option value="01">January</option>
             <option value="02">February</option>
             <option value="03">March</option>
@@ -113,6 +148,8 @@ export function Experience({
             name="endYear"
             id="endYear"
             defaultValue={endYear}
+            onInvalid={showDateError}
+            onInput={showDateError}
             required
           />
         </fieldset>
