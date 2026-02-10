@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="builder">
         <h1>CV Builder</h1>
         <General onSave={updateCv} />
         <Qualification

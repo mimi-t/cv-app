@@ -1,7 +1,9 @@
 #cv-preview {
+  height: 100vh;
   padding: 2rem;
   text-align: left;
   white-space: pre-line;
+  background-color: #fff;
 }
 
 .title-duration {

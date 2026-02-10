@@ -1,3 +1,4 @@
+import "../styles/Qualification.css";
 import { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 
@@ -53,25 +54,32 @@ export function Qualification({ FormComponent, type, onSave }) {
   return (
     <section id={type}>
       <h2>{type.charAt(0).toUpperCase() + type.slice(1)}</h2>
-      {qualifications.map((qualification) => (
-        <Fragment key={qualification.id}>
-          <div
-            key={qualification.id + "list"}
-            onClick={() => toggleCurrentForm(qualification.id)}
-          >
-            {qualification.school}
-            {qualification.title}
-          </div>
-          {openedQualificationId === qualification.id && (
-            <FormComponent
-              {...qualification}
-              key={qualification.id + "form"}
-              onSave={saveQualification}
-              onDelete={deleteQualification}
-            />
-          )}
-        </Fragment>
-      ))}
+      {qualifications.length > 0 && (
+        <div className={`${type}-container`}>
+          {qualifications.map((qualification) => (
+            <Fragment key={qualification.id}>
+              <div
+                key={qualification.id + "list"}
+                onClick={() => toggleCurrentForm(qualification.id)}
+                className={
+                  openedQualificationId === qualification.id && "selected"
+                }
+              >
+                {qualification.school}
+                {qualification.title}
+              </div>
+              {openedQualificationId === qualification.id && (
+                <FormComponent
+                  {...qualification}
+                  key={qualification.id + "form"}
+                  onSave={saveQualification}
+                  onDelete={deleteQualification}
+                />
+              )}
+            </Fragment>
+          ))}
+        </div>
+      )}
       {isActive && <FormComponent onSave={saveQualification} />}
       <button onClick={toggleAddForm}>
         {isActive ? "Close" : `Add ${type}`}

@@ -162,12 +162,18 @@ export function Experience({
           defaultValue={description}
         ></textarea>
       </div>
-      {onDelete && (
-        <button type="button" onClick={() => onDelete(id)}>
-          Delete
-        </button>
-      )}
-      <button type="submit">Save</button>
+      <div className="button-container">
+        {onDelete && (
+          <button
+            type="button"
+            onClick={() => onDelete(id)}
+            className="delete-btn"
+          >
+            Delete
+          </button>
+        )}
+        <button type="submit">Save</button>
+      </div>
     </form>
   );
 }
