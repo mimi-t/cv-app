@@ -17,6 +17,40 @@ export function CvPreview({ general, experience, education }) {
     12: "December",
   };
 
+  function sortByEndDate(a, b) {
+    let aDate;
+    if (a.currentlyWorking) {
+      aDate = new Date();
+    } else if (!a.endYear) {
+      // if end date is not provided, assume it is same as start date
+      let month = a.startMonth ? parseInt(a.startMonth) : 12;
+      aDate = new Date(a.startYear, month - 1);
+    } else {
+      let month = a.endMonth ? parseInt(a.endMonth) : 12;
+      aDate = new Date(a.endYear, month - 1);
+    }
+
+    let bDate;
+    if (b.currentlyWorking) {
+      bDate = new Date();
+    } else if (!b.endYear) {
+      // if end date is not provided, assume it is same as start date
+      let month = b.startMonth ? parseInt(b.startMonth) : 12;
+      bDate = new Date(b.startYear, month - 1);
+    } else {
+      let month = b.endMonth ? parseInt(b.endMonth) : 12;
+      bDate = new Date(b.endYear, month - 1);
+    }
+    return bDate - aDate;
+  }
+
+  const sortedExperience = experience
+    ? [...experience].sort(sortByEndDate)
+    : experience;
+  const sortedEducation = education
+    ? [...education].sort(sortByEndDate)
+    : education;
+
   if (general || experience || education) {
     return (
       <div id="cv-preview">
@@ -33,7 +67,7 @@ export function CvPreview({ general, experience, education }) {
           <div id="experience-container">
             <h2>Experience</h2>
             {experience &&
-              experience.map((role) => {
+              sortedExperience.map((role) => {
                 return (
                   <div className="experience" key={role.id}>
                     <div className="title-duration">
@@ -56,15 +90,15 @@ export function CvPreview({ general, experience, education }) {
           <div id="education-container">
             <h2>Education</h2>
             {education &&
-              education.map((study) => {
+              sortedEducation.map((study) => {
                 return (
                   <div className="education" key={study.id}>
                     <div className="title-duration">
                       <strong>{study.school}</strong>
                       <span>
-                        {MONTH_MAP[study.startMonth]} {study.startYear}
-                        {study.endYear &&
-                          ` - ${study.endMonth && MONTH_MAP[study.endMonth] + " "}${study.endYear}`}
+                        {`${study.startMonth && MONTH_MAP[study.startMonth] + " "}${study.startYear}`}
+                        {study.endYear && " - "}
+                        {`${study.endMonth && MONTH_MAP[study.endMonth] + " "}${study.endYear && study.endYear}`}
                       </span>
                     </div>
                     <p>
