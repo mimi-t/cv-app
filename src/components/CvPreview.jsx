@@ -117,7 +117,7 @@ export function CvPreview({ general, experience, education }) {
       <div id="cv-preview">
         <p id="empty-message">
           Please input your resume details, a CV will be generated here upon
-          completing a section
+          completing a section.
         </p>
       </div>
     );

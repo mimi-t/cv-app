@@ -16,10 +16,18 @@
   overflow: auto;
 }
 
-section {
-  padding: 0 0 1rem;
+details {
+  padding: 1rem 0;
 }
 
-section:not(section:last-child) {
+details:not(details:last-child) {
   border-bottom: 1px solid var(--dark-color);
+}
+
+summary > h2 {
+  display: inline;
+}
+
+details > button {
+  margin-top: 1rem;
 }

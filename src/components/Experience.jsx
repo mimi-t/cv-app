@@ -13,6 +13,7 @@ export function Experience({
   description,
   onSave,
   onDelete,
+  onExit,
 }) {
   const [isCurrent, setIsCurrent] = useState(currentlyWorking === "true");
 
@@ -163,6 +164,11 @@ export function Experience({
         ></textarea>
       </div>
       <div className="button-container">
+        {onExit && (
+          <button type="button" onClick={() => onExit()}>
+            Close
+          </button>
+        )}
         {onDelete && (
           <button
             type="button"
@@ -190,4 +196,5 @@ Experience.propTypes = {
   description: PropTypes.string,
   onSave: PropTypes.func,
   onDelete: PropTypes.func,
+  onExit: PropTypes.func,
 };

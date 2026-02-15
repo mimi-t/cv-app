@@ -17,8 +17,10 @@ export function General({ onSave }) {
     return Object.fromEntries(formData);
   }
   return (
-    <section id="general">
-      <h2>General</h2>
+    <details id="general" open>
+      <summary>
+        <h2>General</h2>
+      </summary>
       <form
         id="general-form"
         onSubmit={(e) => onSave(getFormData(e), "general")}
@@ -56,7 +58,7 @@ export function General({ onSave }) {
         </div>
         <button type="submit">Save</button>
       </form>
-    </section>
+    </details>
   );
 }
 

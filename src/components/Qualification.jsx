@@ -52,8 +52,10 @@ export function Qualification({ FormComponent, type, onSave }) {
   }
 
   return (
-    <section id={type}>
-      <h2>{type.charAt(0).toUpperCase() + type.slice(1)}</h2>
+    <details id={type}>
+      <summary>
+        <h2>{type.charAt(0).toUpperCase() + type.slice(1)}</h2>
+      </summary>
       {qualifications.length > 0 && (
         <div className={`${type}-container`}>
           {qualifications.map((qualification) => (
@@ -80,11 +82,11 @@ export function Qualification({ FormComponent, type, onSave }) {
           ))}
         </div>
       )}
-      {isActive && <FormComponent onSave={saveQualification} />}
-      <button onClick={toggleAddForm}>
-        {isActive ? "Close" : `Add ${type}`}
-      </button>
-    </section>
+      {isActive && (
+        <FormComponent onSave={saveQualification} onExit={toggleAddForm} />
+      )}
+      {!isActive && <button onClick={toggleAddForm}>{`Add ${type}`}</button>}
+    </details>
   );
 }
 
