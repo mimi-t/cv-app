@@ -68,7 +68,7 @@ export function Experience({
           required
         />
       </div>
-      <div>
+      <div className="currently-working-field">
         <input
           type="checkbox"
           name="currentlyWorking"
@@ -82,77 +82,89 @@ export function Experience({
       <div className="form-field">
         <fieldset>
           <legend>Start date*</legend>
-          <label htmlFor="startMonth">Month</label>
-          <select
-            name="startMonth"
-            id="startMonth"
-            defaultValue={startMonth}
-            onInvalid={showDateError}
-            onChange={showDateError}
-            required
-          >
-            <option value=""></option>
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-          <label htmlFor="startYear">Year</label>
-          <input
-            type="number"
-            name="startYear"
-            id="startYear"
-            defaultValue={startYear}
-            onInvalid={showDateError}
-            onInput={showDateError}
-            required
-          />
+          <div className="date-field-container">
+            <div className="date-subfield">
+              <label htmlFor="startMonth">Month</label>
+              <select
+                name="startMonth"
+                id="startMonth"
+                defaultValue={startMonth}
+                onInvalid={showDateError}
+                onChange={showDateError}
+                required
+              >
+                <option value=""></option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+            <div className="date-subfield">
+              <label htmlFor="startYear">Year</label>
+              <input
+                type="number"
+                name="startYear"
+                id="startYear"
+                defaultValue={startYear}
+                onInvalid={showDateError}
+                onInput={showDateError}
+                required
+              />
+            </div>
+          </div>
         </fieldset>
       </div>
       <div className="form-field">
         <fieldset disabled={isCurrent}>
           <legend>End date*</legend>
-          <label htmlFor="endMonth">Month</label>
-          <select
-            name="endMonth"
-            id="endMonth"
-            defaultValue={endMonth}
-            onInvalid={showDateError}
-            onChange={showDateError}
-            required
-          >
-            <option value=""></option>
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-          <label htmlFor="endYear">Year</label>
-          <input
-            type="number"
-            name="endYear"
-            id="endYear"
-            defaultValue={endYear}
-            onInvalid={showDateError}
-            onInput={showDateError}
-            required
-          />
+          <div className="date-field-container">
+            <div className="date-subfield">
+              <label htmlFor="endMonth">Month</label>
+              <select
+                name="endMonth"
+                id="endMonth"
+                defaultValue={endMonth}
+                onInvalid={showDateError}
+                onChange={showDateError}
+                required
+              >
+                <option value=""></option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+            <div className="date-subfield">
+              <label htmlFor="endYear">Year</label>
+              <input
+                type="number"
+                name="endYear"
+                id="endYear"
+                defaultValue={endYear}
+                onInvalid={showDateError}
+                onInput={showDateError}
+                required
+              />
+            </div>
+          </div>
         </fieldset>
       </div>
       <div className="form-field">
